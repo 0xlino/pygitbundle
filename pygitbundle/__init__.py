@@ -18,3 +18,11 @@ def verify_bundle(bundle_file, repo_path):
         print('Git bundle verified successfully.')
     except subprocess.CalledProcessError as e:
         print(f'Error verifying Git bundle: {e.stderr.decode()}')
+
+def unpack_bundle(bundle_file, repo_path):
+    unpack_command = ['git', 'clone', bundle_file]
+    try:
+        subprocess.run(unpack_command, cwd=repo_path, check=True)
+        print('Git bundle unpacked successfully.')
+    except subprocess.CalledProcessError as e:
+        print(f'Error unpacking Git bundle: {e.stderr}')
