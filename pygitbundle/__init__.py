@@ -11,3 +11,10 @@ def create_bundle(bundle_file, repo_path):
     except subprocess.CalledProcessError as e:
         print(f'Error creating Git bundle: {e.stderr.decode()}')
 
+def verify_bundle(bundle_file, repo_path):
+    verify_command = ['git', 'bundle', 'verify', bundle_file]
+    try:
+        subprocess.run(verify_command, cwd=repo_path, check=True)
+        print('Git bundle verified successfully.')
+    except subprocess.CalledProcessError as e:
+        print(f'Error verifying Git bundle: {e.stderr.decode()}')
