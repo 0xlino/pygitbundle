@@ -10,4 +10,3 @@ def create_bundle(bundle_file, repo_path):
         print('Git bundle created successfully.')
     except subprocess.CalledProcessError as e:
         print(f'Error creating Git bundle: {e.stderr.decode()}')
-
