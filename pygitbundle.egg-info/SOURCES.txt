@@ -1,0 +1,7 @@
+README.md
+setup.py
+pygitbundle/__init__.py
+pygitbundle.egg-info/PKG-INFO
+pygitbundle.egg-info/SOURCES.txt
+pygitbundle.egg-info/dependency_links.txt
+pygitbundle.egg-info/top_level.txt
