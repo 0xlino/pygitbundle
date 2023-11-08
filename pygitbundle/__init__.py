@@ -41,3 +41,18 @@ def encrypt_bundle_with_password(bundle_file, repo_path, password):
         print('Git bundle encrypted successfully.')
     except subprocess.CalledProcessError as e:
         print(f'Error encrypting Git bundle: {e.stderr}')
+
+def decrypt_bundle_with_password(bundle_file, repo_path, password):
+    decrypt_command = ['openssl', 'aes-256-cbc', '-d', '-in', bundle_file + '.enc', '-out', bundle_file + '.dec']
+
+    try:
+        # Decrypt the bundle using OpenSSL
+        subprocess.run(decrypt_command, cwd=repo_path, check=True, input=password.encode())
+
+        # Unpack the Git bundle
+        unpack_command = ['git', 'clone', bundle_file]
+        subprocess.run(unpack_command, cwd=repo_path, check=True)
+
+        print('Git bundle decrypted successfully.')
+    except subprocess.CalledProcessError as e:
+        print(f'Error decrypting Git bundle: {e.stderr}')
